@@ -1,0 +1,74 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for installation in {{ gcloud_install_dir }}
+  become: '{{ gcloud_escalate }}'
+  become_user: root
+  stat:
+    path: '{{ gcloud_install_dir }}'
+  changed_when: false
+  register: gcloud_binary
+- when: not gcloud_binary.stat.exists
+  block:
+    - name: downloading {{ gcloud_url }} to {{ gcloud_tmp_archive }}
+      become: '{{ gcloud_escalate }}'
+      become_user: root
+      get_url:
+        url: '{{ gcloud_url }}'
+        dest: '{{ gcloud_tmp_archive }}'
+        checksum: '{{ gcloud_checksum}}'
+        mode: 0644
+    - name: mkdir {{ gcloud_install_dir }}
+      become: '{{ gcloud_escalate }}'
+      become_user: root
+      file:
+        path: '{{ gcloud_install_dir }}'
+        state: directory
+        mode: 0755
+    - name: unarchive {{ gcloud_tmp_archive }} to {{ gcloud_install_dir }}
+      become: '{{ gcloud_escalate }}'
+      become_user: root
+      unarchive:
+        remote_src: true
+        src: '{{ gcloud_tmp_archive }}'
+        dest: '{{ gcloud_install_dir }}'
+        creates: '{{ gcloud_install_subdir }}'
+  always:
+    - name: rm {{ gcloud_tmp_archive }}
+      become: '{{ gcloud_escalate }}'
+      become_user: root
+      file:
+        path: '{{ gcloud_tmp_archive }}'
+        state: absent
+- name: link {{ gcloud_link_dir }} to {{ gcloud_install_subdir }}
+  become: '{{ gcloud_escalate }}'
+  become_user: root
+  file:
+    src: '{{ gcloud_install_subdir }}'
+    dest: '{{ gcloud_link_dir }}'
+    state: link
+- name: profile dir
+  become: '{{ gcloud_escalate }}'
+  become_user: root
+  file:
+    path: '{{ gcloud_profile_dir }}'
+    state: directory
+    mode: 0755
+- name: add bins to login shell
+  become: '{{ gcloud_escalate }}'
+  become_user: root
+  with_items:
+    - f: gcloud.sh
+      d: '{{ gcloud_profile_dir }}'
+  template:
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m | default("0644") }}'
