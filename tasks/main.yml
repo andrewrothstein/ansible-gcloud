@@ -28,7 +28,7 @@
       get_url:
         url: '{{ gcloud_url }}'
         dest: '{{ gcloud_tmp_archive }}'
-        checksum: '{{ gcloud_checksum}}'
+        checksum: '{{ gcloud_checksum }}'
         mode: 0644
     - name: mkdir {{ gcloud_install_dir }}
       become: '{{ gcloud_escalate }}'
