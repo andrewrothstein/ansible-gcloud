@@ -1,9 +1,7 @@
 ---
 # defaults file for gcloud
-gcloud_ver: 360.0.0
+gcloud_ver: 444.0.0
 gcloud_mirror: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
-gcloud_os: linux
-gcloud_arch: x86_64
 
 gcloud_persona: sys
 

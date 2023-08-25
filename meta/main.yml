@@ -15,24 +15,20 @@ galaxy_info:
         - all
     - name: Debian
       versions:
+        - bookworm
         - bullseye
-        - buster
     - name: EL
       versions:
         - 8
+        - 9
     - name: Fedora
       versions:
-        - 34
+        - 37
+        - 38
     - name: Ubuntu
       versions:
-        - bionic
         - focal
+        - jammy
   galaxy_tags:
     - development
   role_name: gcloud
-
-dependencies:
-  - role: andrewrothstein.unarchive-deps
-    version: v1.2.1
-  - role: andrewrothstein.python
-    version: v2.0.0
