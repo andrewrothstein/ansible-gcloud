@@ -17,3 +17,14 @@ gcloud_checksums:
     windows-x86_64: sha256:71480cad1b8b522cc34196b1d5677df93d8bcef1cf23a15e592444f8a438329c
     # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-360.0.0-windows-x86.zip
     windows-x86: sha256:95e1233c3239ee4463fc4a6138460ad5ce6ee62bb8353ce8b2c5d998a761da53
+  '440.0.0':
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-440.0.0-linux-arm.tar.gz
+    linux-arm: sha256:97f05b89d39e5467cd06de7a708c79c659e69ea63cf1da7e31841cf936fa650b
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-440.0.0-linux-x86_64.tar.gz
+    linux-x86_64: sha256:e19f04c4135afeac6ca91eca62e6a1873f3b27d9c62fa9fa1b56a7736aa99835
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-440.0.0-linux-x86.tar.gz
+    linux-x86: sha256:4bcac5d3ea4fcffd660d0c01790a619033fba0b353717513a73f4d9d099cffde
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-440.0.0-windows-x86_64.zip
+    windows-x86_64: sha256:9d7678e6403336e1082cfda993993406e5230f26f11e1c085c896de708a5cdab
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-440.0.0-windows-x86.zip
+    windows-x86: sha256:77f3f3856c686e9af508cc22ee3c368fc2ccb962e680fce341c6f74cee6e7c7a
