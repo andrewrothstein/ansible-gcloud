@@ -19,10 +19,11 @@ galaxy_info:
     - name: EL
       versions:
         - 8
+        - 9
     - name: Fedora
       versions:
-        - 37
         - 38
+        - 39
     - name: Ubuntu
       versions:
         - focal
