@@ -1,10 +1,12 @@
 ---
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- include_role:
+- name: Installing andrewrothstein.python
+  ansible.builtin.include_role:
     name: andrewrothstein.python
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -13,66 +15,67 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for installation in {{ gcloud_install_dir }}
+- name: Check for installation in {{ gcloud_install_dir }}
   become: '{{ gcloud_escalate }}'
   become_user: root
-  stat:
+  ansible.builtin.stat:
     path: '{{ gcloud_install_dir }}'
   changed_when: false
   register: gcloud_binary
-- when: not gcloud_binary.stat.exists
+- name: Downloading and installing gcloud
+  when: not gcloud_binary.stat.exists
   block:
-    - name: downloading {{ gcloud_url }} to {{ gcloud_tmp_archive }}
+    - name: Downloading {{ gcloud_url }} to {{ gcloud_tmp_archive }}
       become: '{{ gcloud_escalate }}'
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ gcloud_url }}'
         dest: '{{ gcloud_tmp_archive }}'
         checksum: '{{ gcloud_checksum }}'
-        mode: 0644
-    - name: mkdir {{ gcloud_install_dir }}
+        mode: '644'
+    - name: Mkdir {{ gcloud_install_dir }}
       become: '{{ gcloud_escalate }}'
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ gcloud_install_dir }}'
         state: directory
-        mode: 0755
-    - name: unarchive {{ gcloud_tmp_archive }} to {{ gcloud_install_dir }}
+        mode: '755'
+    - name: Unarchive {{ gcloud_tmp_archive }} to {{ gcloud_install_dir }}
       become: '{{ gcloud_escalate }}'
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ gcloud_tmp_archive }}'
         dest: '{{ gcloud_install_dir }}'
         creates: '{{ gcloud_install_subdir }}'
   always:
-    - name: rm {{ gcloud_tmp_archive }}
+    - name: Rm {{ gcloud_tmp_archive }}
       become: '{{ gcloud_escalate }}'
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ gcloud_tmp_archive }}'
         state: absent
-- name: link {{ gcloud_link_dir }} to {{ gcloud_install_subdir }}
+- name: Link {{ gcloud_link_dir }} to {{ gcloud_install_subdir }}
   become: '{{ gcloud_escalate }}'
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ gcloud_install_subdir }}'
     dest: '{{ gcloud_link_dir }}'
     state: link
-- name: profile dir
+- name: Mkdir {{ gcloud_profile_dir }}
   become: '{{ gcloud_escalate }}'
   become_user: root
-  file:
+  ansible.builtin.file:
     path: '{{ gcloud_profile_dir }}'
     state: directory
-    mode: 0755
-- name: add bins to login shell
+    mode: '755'
+- name: Add binaris to login shell
   become: '{{ gcloud_escalate }}'
   become_user: root
   with_items:
     - f: gcloud.sh
       d: '{{ gcloud_profile_dir }}'
-  template:
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
     mode: '{{ item.m | default("0644") }}'
