@@ -1,5 +1,5 @@
 ---
 - name: andrewrothstein.unarchivedeps
-  version: 3.0.0
+  version: 3.0.1
 - name: andrewrothstein.python
-  version: v2.0.7
+  version: v2.0.8
