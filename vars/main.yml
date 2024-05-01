@@ -3,7 +3,7 @@
 gcloud_os: '{{ ansible_system | lower }}'
 gcloud_arch: '{{ ansible_architecture }}'
 gcloud_prefix: google-cloud-sdk
-gcloud_name: '{{ gcloud_prefix}}-{{ gcloud_ver }}'
+gcloud_name: '{{ gcloud_prefix }}-{{ gcloud_ver }}'
 gcloud_platform: '{{ gcloud_os }}-{{ gcloud_arch }}'
 gcloud_archive: '{{ gcloud_name }}-{{ gcloud_platform }}.{{ gcloud_archive_type | default("tar.gz") }}'
 gcloud_tmp_archive: /tmp/{{ gcloud_archive }}
