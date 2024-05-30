@@ -33,4 +33,4 @@ dl_ver() {
     dl $ver windows x86 zip
 }
 
-dl_ver ${1:-476.0.0}
+dl_ver ${1:-478.0.0}
