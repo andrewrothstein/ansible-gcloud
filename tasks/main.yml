@@ -1,7 +1,4 @@
 ---
-- name: Installing andrewrothstein.unarchivedeps
-  ansible.builtin.include_role:
-    name: andrewrothstein.unarchivedeps
 - name: Installing andrewrothstein.python
   ansible.builtin.include_role:
     name: andrewrothstein.python
@@ -40,6 +37,9 @@
         path: '{{ gcloud_install_dir }}'
         state: directory
         mode: '755'
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
     - name: Unarchive {{ gcloud_tmp_archive }} to {{ gcloud_install_dir }}
       become: '{{ gcloud_escalate }}'
       become_user: root
