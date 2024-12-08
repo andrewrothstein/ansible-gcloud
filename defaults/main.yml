@@ -1,6 +1,6 @@
 ---
 # defaults file for gcloud
-gcloud_ver: 484.0.0
+gcloud_ver: 502.0.0
 gcloud_mirror: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 
 gcloud_persona: sys
@@ -248,3 +248,14 @@ gcloud_checksums:
     windows-x86_64: sha256:88b57df18cbd7968d740776d1a5b03b93ef636af357b1865919475e9f5e589ef
     # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-484.0.0-windows-x86.zip
     windows-x86: sha256:1b74341f1620900c57d3d7ab1604d387e7897d02590aa1b482a955a014031bda
+  '502.0.0':
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-502.0.0-linux-arm.tar.gz
+    linux-arm: sha256:e4fec758e5ccfc4c3c516ea7cb92850f618e8a9b029990a39cbd7c7d4a3f7ea2
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-502.0.0-linux-x86_64.tar.gz
+    linux-x86_64: sha256:21ec18e0288643fb8db454da1fa5632e3888382cc02c2a31ef3b3cd1ab0d9f7f
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-502.0.0-linux-x86.tar.gz
+    linux-x86: sha256:c427e3bddeb3f4a3219f7150535cbb5dfba46b9c2cd1e055197d7e80bead6695
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-502.0.0-windows-x86_64.zip
+    windows-x86_64: sha256:82270ab11e486c50e552a8ec4e4152a234ddd97d23d062deb85d5d91faa8e5e7
+    # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-502.0.0-windows-x86.zip
+    windows-x86: sha256:19fd1d359d4efd0824f89e568b08d58d734d78c1bee66f34b0e29dd9c43b1ce2
