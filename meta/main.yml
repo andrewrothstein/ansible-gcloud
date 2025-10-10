@@ -12,16 +12,12 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-    - name: ArchLinux
-      versions:
-        - all
     - name: Debian
       versions:
         - bookworm
         - bullseye
     - name: EL
       versions:
-        - '8'
         - '9'
     - name: Fedora
       versions:
