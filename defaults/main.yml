@@ -5,6 +5,12 @@ gcloud_mirror: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 
 gcloud_persona: sys
 
+gcloud_arch_map:
+  arm64: arm
+  aarch64: arm
+  x86_64: x86_64
+  x86_32: x86
+
 gcloud_checksums:
   '360.0.0':
     # https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-360.0.0-linux-arm.tar.gz
