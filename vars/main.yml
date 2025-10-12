@@ -4,7 +4,7 @@ gcloud_os: '{{ ansible_system | lower }}'
 gcloud_arch: '{{ gcloud_arch_map[ansible_architecture] }}'
 gcloud_prefix: google-cloud-sdk
 gcloud_name: '{{ gcloud_prefix }}-{{ gcloud_ver }}'
-gcloud_platform: '{% if gcloud_arch == arm %}{{ gcloud_arch }}{% else %}{{ gcloud_os }}-{{ gcloud_arch }}{% endif %}'
+gcloud_platform: '{% if gcloud_arch == "arm" %}{{ gcloud_arch }}{% else %}{{ gcloud_os }}-{{ gcloud_arch }}{% endif %}'
 gcloud_archive: '{{ gcloud_name }}-{{ gcloud_platform }}.{{ gcloud_archive_type | default("tar.gz") }}'
 gcloud_tmp_archive: '{{ gcloud_tmp_dir | default("/tmp") }}/{{ gcloud_archive }}'
 gcloud_url: '{{ gcloud_mirror }}/{{ gcloud_archive }}'
