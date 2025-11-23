@@ -1,6 +1,6 @@
 ---
 # defaults file for gcloud
-gcloud_ver: 544.0.0
+gcloud_ver: 548.0.0
 gcloud_mirror: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads
 
 gcloud_persona: sys
