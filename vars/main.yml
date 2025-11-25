@@ -1,7 +1,7 @@
 ---
 # vars file for gcloud
-gcloud_os: '{{ ansible_system | lower }}'
-gcloud_arch: '{{ gcloud_arch_map[ansible_architecture] }}'
+gcloud_os: '{{ ansible_facts["system"] | lower }}'
+gcloud_arch: '{{ gcloud_arch_map[ansible_facts["architecture"]] }}'
 gcloud_prefix: google-cloud-sdk
 gcloud_name: '{{ gcloud_prefix }}-{{ gcloud_ver }}'
 gcloud_platform: '{{ gcloud_os }}-{{ gcloud_arch }}'
